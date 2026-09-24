@@ -1,0 +1,53 @@
+---
+title: "Mallard Duck Movement"
+author: "Kara Reed"
+execute:
+  echo: false
+---
+
+```{r}
+#| message: false
+library(tidyverse)
+library(sf)
+library(ggridges)
+```
+
+```{r}
+#| cache: true
+mallards <- readRDS("data/mallards.rds")
+```
+
+```{r}
+count(mallards, month)
+```
+
+```{r}
+summary(mallards$speed)
+```
+
+```{r}
+mallards |>
+  filter(speed <= 30) |>
+  group_by(season, month) |>
+  summarise(
+    mean_speed = mean(speed, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+```{r}
+mallards |>
+  filter(speed <= 30) |>
+  ggplot(aes(x = speed, y = month)) +
+  geom_density_ridges(
+    fill = "steelblue",
+    alpha = 0.8,
+    scale = 3,
+    rel_min_height = 0.01
+  ) +
+  labs(
+    x = "Speed (m/s)",
+    y = "Month"
+  ) +
+  theme_minimal()
+```
