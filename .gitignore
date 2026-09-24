@@ -4,3 +4,5 @@ _site/
 *_cache
 *.html
 data/mallards.rds
+/.quarto/
+**/*.quarto_ipynb

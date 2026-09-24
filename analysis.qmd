@@ -5,6 +5,16 @@ execute:
   echo: false
 ---
 
+Mallards are adaptable dabbling ducks found across much of the Northern Hemisphere. They are comfortable in wetlands, lakes, and urban waterways, where they feed in shallow water and rest along the shore.
+
+Lake Constance is a large lake in central Europe, bordered by Germany, Switzerland, and Austria. Its broad shoreline and connected wetlands provide important habitat for waterbirds moving through the region.
+
+The GPS tracking data records where individual mallards were located over time. These fixes reveal the ducks' geographic range, seasonal movements, and differences in activity, including periods when most birds are resting.
+
+<div style="display: flex; justify-content: center;">
+  <img src="images/mallard.jpg" style="height: 300px; width: auto;"/>
+</div>
+
 ```{r}
 #| message: false
 library(tidyverse)
