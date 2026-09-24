@@ -1,4 +1,31 @@
 ---
 title: "Mallard Duck Movement"
 author: "Kara Reed"
+execute:
+  echo: false
 ---
+
+```{r}
+#| message: false
+library(tidyverse)
+library(sf)
+```
+
+```{r}
+#| cache: true
+mallards <- readRDS("data/mallards.rds")
+```
+
+```{r}
+count(mallards, duck_id, sort = TRUE)
+```
+
+```{r}
+summarise(
+  mallards,
+  min_latitude = min(lat, na.rm = TRUE),
+  max_latitude = max(lat, na.rm = TRUE),
+  min_longitude = min(long, na.rm = TRUE),
+  max_longitude = max(long, na.rm = TRUE)
+)
+```

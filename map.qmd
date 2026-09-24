@@ -1,0 +1,35 @@
+---
+title: "Mallard Duck Movement"
+author: "Kara Reed"
+execute:
+  echo: false
+---
+
+```{r}
+#| message: false
+library(tidyverse)
+library(sf)
+```
+
+```{r}
+#| cache: true
+mallards <- readRDS("data/mallards.rds")
+```
+
+```{r}
+region <- mallards |>
+  filter(between(lat, 46, 55), between(long, 7, 25)) |>
+  st_as_sf(coords = c("long", "lat"), crs = 4326, remove = FALSE)
+
+world <- rnaturalearth::ne_countries(
+  scale = "medium",
+  returnclass = "sf"
+)
+
+ggplot() +
+  geom_sf(data = world, fill = "grey90", color = "grey60") +
+  geom_sf(data = region, aes(color = duck_id), alpha = 0.7, size = 0.7) +
+  coord_sf(xlim = c(7, 25), ylim = c(46, 55), expand = FALSE) +
+  labs(color = "Duck") +
+  theme_minimal()
+```
